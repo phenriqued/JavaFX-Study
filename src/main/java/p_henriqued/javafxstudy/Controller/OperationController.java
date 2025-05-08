@@ -1,6 +1,7 @@
 package p_henriqued.javafxstudy.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -43,12 +44,16 @@ public class OperationController {
 
     //Metodo resposável por fazer as operações utilizando a interface BiFunctional.
     private void operation(BiFunction<Double, Double, Double> function){
-        Locale.setDefault(Locale.US);
-        resultLabel.setText("");
-        Double numberOne = Double.parseDouble(numberOneTextField.getText());
-        Double numberSecond = Double.parseDouble(numberSecondTextField.getText());
-        Double result = function.apply(numberOne, numberSecond);
-        resultLabel.setText(String.format("%.2f", result));
+        try {
+            Locale.setDefault(Locale.US);
+            resultLabel.setText("");
+            Double numberOne = Double.parseDouble(numberOneTextField.getText());
+            Double numberSecond = Double.parseDouble(numberSecondTextField.getText());
+            Double result = function.apply(numberOne, numberSecond);
+            resultLabel.setText(String.format("%.2f", result));
+        }catch (NumberFormatException | ArithmeticException exception){
+            AlertController.alertShow("ERROR", "ERROR PERFORMING THE OPERATION!", exception.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
 }
