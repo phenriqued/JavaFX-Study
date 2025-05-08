@@ -3,12 +3,55 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="362.0" prefWidth="414.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="p_henriqued.javafxstudy.Controller.HelloController">
+<VBox alignment="CENTER" prefHeight="344.0" prefWidth="414.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p_henriqued.javafxstudy.Controller.OperationController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Click in Here!" />
+   <AnchorPane prefHeight="320.0" prefWidth="374.0">
+      <children>
+         <TextField fx:id="numberOneTextField" layoutX="90.0" layoutY="36.0" prefHeight="30.0" prefWidth="184.0" promptText="Digite o primeiro número.">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="numberSecondTextField" layoutX="90.0" layoutY="93.0" prefHeight="30.0" prefWidth="184.0" promptText="Digite o segundo número.">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </TextField>
+         <Button layoutX="85.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSumButtonClick" text="+">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button layoutX="270.0" layoutY="149.0" mnemonicParsing="false" onAction="#onDivisionButtonClick" text="/">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button layoutX="215.0" layoutY="149.0" mnemonicParsing="false" onAction="#onMultipleButtonClick" text="*">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button layoutX="154.0" layoutY="149.0" mnemonicParsing="false" onAction="#onSubtractButtonClick" text="-">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Label layoutX="25.0" layoutY="246.0" text="Resultado: ">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label fx:id="resultLabel" layoutX="113.0" layoutY="246.0" prefHeight="27.0" prefWidth="184.0">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Button layoutX="156.0" layoutY="200.0" mnemonicParsing="false" onAction="#onCleanButtonClick" text="Limpar" />
+      </children>
+   </AnchorPane>
 </VBox>
