@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="368.0" prefWidth="461.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p_henriqued.javafxstudy.Controller.PersonController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <AnchorPane prefHeight="345.0" prefWidth="442.0">
+      <children>
+         <TextField fx:id="nameField" layoutX="14.0" layoutY="49.0" prefHeight="25.0" prefWidth="237.0" promptText="Nome">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="emailField" layoutX="14.0" layoutY="87.0" prefHeight="25.0" prefWidth="237.0" promptText="Email">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="numberPhoneField" layoutX="14.0" layoutY="127.0" prefHeight="25.0" prefWidth="237.0" promptText="Número do celular">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </TextField>
+         <Label layoutX="194.0" layoutY="168.0" text="Usuários:">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="resultUserLabel" layoutX="8.0" layoutY="197.0" prefHeight="81.0" prefWidth="405.0">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label layoutX="159.0" layoutY="14.0" text="Cadastro de Usuário">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Button layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#onSendButtonClick" text="Enviar" />
+         <ComboBox fx:id="userComboBox" layoutX="257.0" layoutY="165.0" onAction="#onComboBoxClick" prefWidth="150.0" promptText="Selecione o Usuário" />
+         <Button layoutX="133.0" layoutY="302.0" mnemonicParsing="false" onAction="#onCleanClick" text="Limpar" />
+         <Button layoutX="211.0" layoutY="302.0" mnemonicParsing="false" onAction="#onCleanAllUsersClick" text="Apagar Usuários" />
+      </children></AnchorPane>
+</VBox>
