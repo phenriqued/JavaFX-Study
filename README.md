@@ -8,7 +8,7 @@ Este repositório tem como objetivo documentar meu aprendizado e exploração do
 ## Branches
 
 * `main`: Contém a estrutura básica do projeto e informações gerais.
-* ...
+* `controls`: Demonstrações de diversos controles de UI do JavaFX.
 
 ## Como usar
 
