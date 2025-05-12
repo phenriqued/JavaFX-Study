@@ -25,6 +25,12 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem menuItemAbout;
 
+
+    @FXML
+    protected void onMenuItemDepartmentAction(){
+        loadView("/p_henriqued/javafxstudy/gui/DepartmentView.fxml");
+    }
+
     @FXML
     protected void onMenuItemAboutAction(){
         loadView("/p_henriqued/javafxstudy/gui/AboutView.fxml");
