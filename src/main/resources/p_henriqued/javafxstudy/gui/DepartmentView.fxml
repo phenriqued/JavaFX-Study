@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="p_henriqued.javafxstudy.Controller.MainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p_henriqued.javafxstudy.Controller.DepartmentController.DepartmentController">
     <children>
         <Label text="Department Registration">
             <font>
@@ -21,13 +17,13 @@
         </Label>
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <items>
-                <Button fx:id="btNew" mnemonicParsing="false" text="New" />
+                <Button fx:id="buttonNew" mnemonicParsing="false" onAction="#onButtonNewClick" text="New" />
             </items>
         </ToolBar>
-        <TableView prefHeight="200.0" prefWidth="200.0">
+        <TableView fx:id="tableViewDepartment" prefHeight="200.0" prefWidth="200.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="Id" />
-                <TableColumn prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="tableColumnIdDepartment" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="tableColumnNameDepartment" prefWidth="75.0" text="Name" />
             </columns>
         </TableView>
     </children>
