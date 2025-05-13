@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import lombok.Getter;
+import p_henriqued.javafxstudy.Repositories.Repository.Repository;
 
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class MainApplication extends Application {
             scrollPane.setFitToWidth(true);
 
             primaryStage.setScene(mainScene);
+            new Repository<>();
             primaryStage.setTitle("JavaFX application");
             primaryStage.show();
         } catch (IOException e) {

@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import p_henriqued.javafxstudy.Controller.DepartmentController.DepartmentController;
 import p_henriqued.javafxstudy.MainApplication;
 import p_henriqued.javafxstudy.Servicies.DepartmentService.DepartmentService;
+import p_henriqued.javafxstudy.infra.Exceptions.ValidationException;
 import p_henriqued.javafxstudy.util.Alert.Alerts;
 
 import java.io.IOException;

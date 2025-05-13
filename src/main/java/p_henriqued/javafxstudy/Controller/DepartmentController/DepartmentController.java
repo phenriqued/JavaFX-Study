@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import lombok.Setter;
 import p_henriqued.javafxstudy.MainApplication;
 import p_henriqued.javafxstudy.Servicies.DepartmentService.DepartmentService;
+import p_henriqued.javafxstudy.infra.Exceptions.ValidationException;
 import p_henriqued.javafxstudy.listeners.DataChangeListener;
 import p_henriqued.javafxstudy.models.Department.Department;
 import p_henriqued.javafxstudy.util.Alert.Alerts;
@@ -89,7 +90,7 @@ public class DepartmentController implements Initializable, DataChangeListener {
             dialogStage.initOwner(parentStage);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.showAndWait();
-        } catch (IOException e) {
+        } catch (ValidationException | IOException e) {
             Alerts.AlertShow("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }

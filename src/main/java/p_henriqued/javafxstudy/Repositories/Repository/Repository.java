@@ -5,7 +5,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -20,6 +19,9 @@ public class Repository<T> {
     public Repository(Class<T> objClass) {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("javafx-persistence-unit");
         object = objClass;
+    }
+    public Repository(){
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("javafx-persistence-unit");
     }
 
     public void save(T object){

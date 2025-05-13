@@ -4,24 +4,20 @@ package p_henriqued.javafxstudy.Controller.DepartmentController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lombok.Getter;
 import lombok.Setter;
 import p_henriqued.javafxstudy.Servicies.DepartmentService.DepartmentService;
+import p_henriqued.javafxstudy.infra.Exceptions.ValidationException;
 import p_henriqued.javafxstudy.listeners.DataChangeListener;
 import p_henriqued.javafxstudy.models.Department.Department;
-import p_henriqued.javafxstudy.util.Alert.Alerts;
 import p_henriqued.javafxstudy.util.Constraints.Constraints;
 import p_henriqued.javafxstudy.util.Utils;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DepartmentFormsController implements Initializable {
 
@@ -45,14 +41,13 @@ public class DepartmentFormsController implements Initializable {
     @FXML
     protected void onBtnSaveOnClick(ActionEvent event){
         if (Objects.isNull(departmentEntity) || Objects.isNull(service)) throw new IllegalStateException("Entity or Service can't be null.");
-        if(Objects.isNull(departmentNameTextField) || departmentNameTextField.getText().isBlank()) return;
         try {
             departmentEntity = getFormData();
             service.saveOrUpdate(departmentEntity);
             notifyDataChangeListeners();
             Utils.currentStage(event).close();
-        }catch (Exception e){
-            Alerts.AlertShow("Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
+        } catch (ValidationException e){
+            setErrorMessages(e.getError());
         }
     }
 
@@ -84,6 +79,8 @@ public class DepartmentFormsController implements Initializable {
     private Department getFormData(){
         Department dep = new Department();
         dep.setId(Utils.tryParseToLong(idDepartmentLabel.getText()));
+        if(Objects.isNull(departmentNameTextField.getText()) || departmentNameTextField.getText().trim().isEmpty())
+            throw new ValidationException("Name Department", "The department name cannot be null");
         dep.setName(departmentNameTextField.getText());
         return dep;
     }
@@ -92,6 +89,12 @@ public class DepartmentFormsController implements Initializable {
         for (DataChangeListener listener : dataChangeListeners) {
             listener.onDataChanged();
         }
+    }
+
+    public void setErrorMessages(Map<String, String> errors){
+        Set<String> fields = errors.keySet();
+        if(fields.contains("Name Department"))
+            errorLabel.setText(errors.get("Name Department"));
     }
 
 }
