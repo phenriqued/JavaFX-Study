@@ -10,4 +10,12 @@ public class Utils {
         return (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     }
 
+    public static Long tryParseToLong(String id){
+        try{
+           return Long.parseLong(id);
+        }catch (NumberFormatException exception){
+            return null;
+        }
+    }
+
 }

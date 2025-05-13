@@ -19,6 +19,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
+            <Label layoutX="10.0" layoutY="50.0" text="ID" />
+            <Label fx:id="idDepartmentLabel" alignment="CENTER" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
                 <Label text="Name" GridPane.rowIndex="1" />
                 <Label fx:id="errorLabel" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
@@ -27,7 +33,7 @@
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font></Label>
-                <TextField fx:id="departmentName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="departmentNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
                         <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtnSaveOnClick" text="Save" />

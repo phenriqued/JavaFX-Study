@@ -5,6 +5,7 @@ import p_henriqued.javafxstudy.Repositories.Repository.Repository;
 import p_henriqued.javafxstudy.models.Department.Department;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Getter
@@ -18,6 +19,14 @@ public class DepartmentService {
 
     public List<Department> findAllDepartments(){
         return repository.findAll();
+    }
+
+    public void saveOrUpdate(Department department){
+        if (Objects.isNull(department.getId())) {
+            repository.save(department);
+        } else {
+            repository.update(department);
+        }
     }
 
 }

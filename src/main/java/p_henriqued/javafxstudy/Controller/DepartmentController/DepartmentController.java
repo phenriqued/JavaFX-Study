@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import lombok.Setter;
 import p_henriqued.javafxstudy.MainApplication;
 import p_henriqued.javafxstudy.Servicies.DepartmentService.DepartmentService;
+import p_henriqued.javafxstudy.listeners.DataChangeListener;
 import p_henriqued.javafxstudy.models.Department.Department;
 import p_henriqued.javafxstudy.util.Alert.Alerts;
 import p_henriqued.javafxstudy.util.Utils;
@@ -29,7 +30,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class DepartmentController implements Initializable {
+public class DepartmentController implements Initializable, DataChangeListener {
 
     @FXML
     private TableView<Department> tableViewDepartment;
@@ -47,7 +48,8 @@ public class DepartmentController implements Initializable {
     @FXML
     public void onButtonNewClick(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
-        createDialogForm("/p_henriqued/javafxstudy/gui/DepartmentFormView.fxml", parentStage);
+        Department dep = new Department();
+        createDialogForm(dep, "/p_henriqued/javafxstudy/gui/DepartmentFormView.fxml", parentStage);
     }
 
 
@@ -68,10 +70,17 @@ public class DepartmentController implements Initializable {
         tableViewDepartment.setItems(obsListDepartment);
     }
 
-    private void createDialogForm(String absoluteName, Stage parentStage){
+    private void createDialogForm(Department dep, String absoluteName, Stage parentStage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             Pane pane = loader.load();
+
+            DepartmentFormsController formsController = loader.getController();
+            formsController.setDepartmentEntity(dep);
+            formsController.setService(new DepartmentService());
+            formsController.subscribeDataChangeListener(this);
+            formsController.updateFormData();
+            if(formsController.getIdDepartmentLabel().getText().equalsIgnoreCase("null")) formsController.getIdDepartmentLabel().setText("");
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Enter department data");
@@ -85,4 +94,8 @@ public class DepartmentController implements Initializable {
         }
     }
 
+    @Override
+    public void onDataChanged() {
+        updateTableView();
+    }
 }
