@@ -14,11 +14,12 @@ public class Repository<T> {
 
     private final EntityManagerFactory entityManagerFactory;
 
-    @Setter @Getter
-    private T object;
+    @Getter
+    private Class<T> object;
 
-    public Repository() {
+    public Repository(Class<T> objClass) {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("javafx-persistence-unit");
+        object = objClass;
     }
 
     public void save(T object){
@@ -29,18 +30,18 @@ public class Repository<T> {
         entityManager.close();
     }
 
-    public T findById(Class<T> objClass,Long id){
+    public T findById(Long id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        T obj = entityManager.find(objClass, id);
+        T obj = entityManager.find(this.object, id);
         entityManager.close();
         return obj;
     }
 
-    public List<T> findAll(Class<T> objClass){
+    public List<T> findAll(){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        String entityName = objClass.getAnnotation(Entity.class).name();
+        String entityName = object.getAnnotation(Entity.class).name();
         List<T> objList = entityManager
-                .createQuery("SELECT e FROM " + entityName + " e", objClass)
+                .createQuery("SELECT e FROM " + entityName + " e", this.object)
                 .getResultList();
         entityManager.close();
         return objList;
@@ -54,11 +55,11 @@ public class Repository<T> {
         entityManager.close();
     }
 
-    public void delete(Class<T> objClass,Long id){
+    public void delete(Long id){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        var dep = entityManager.find(objClass, id);
-        if(dep != null) entityManager.remove(objClass);
+        var dep = entityManager.find(this.object, id);
+        if(dep != null) entityManager.remove(dep);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

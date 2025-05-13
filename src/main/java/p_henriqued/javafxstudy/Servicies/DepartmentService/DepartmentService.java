@@ -13,11 +13,11 @@ public class DepartmentService {
     private Repository<Department> repository;
 
     public DepartmentService() {
-        this.repository = new Repository<Department>();
+        this.repository = new Repository<>(Department.class);
     }
 
     public List<Department> findAllDepartments(){
-        return repository.findAll(Department.class);
+        return repository.findAll();
     }
 
 }
