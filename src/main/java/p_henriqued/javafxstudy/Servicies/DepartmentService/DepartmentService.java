@@ -29,4 +29,9 @@ public class DepartmentService {
         }
     }
 
+    public void remove(Long id){
+        repository.delete(id);
+    }
+
+
 }

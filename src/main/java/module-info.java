@@ -4,6 +4,7 @@ module p_henriqued.javafxstudy {
     requires static lombok;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires mysql.connector.j;
 
 
     opens p_henriqued.javafxstudy to javafx.fxml;
