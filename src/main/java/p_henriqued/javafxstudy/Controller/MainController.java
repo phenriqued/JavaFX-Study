@@ -10,9 +10,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import p_henriqued.javafxstudy.Controller.DepartmentController.DepartmentController;
+import p_henriqued.javafxstudy.Controller.SellerController.SellerController;
 import p_henriqued.javafxstudy.MainApplication;
 import p_henriqued.javafxstudy.Servicies.DepartmentService.DepartmentService;
-import p_henriqued.javafxstudy.infra.Exceptions.ValidationException;
+import p_henriqued.javafxstudy.Servicies.SellersService.SellerService;
 import p_henriqued.javafxstudy.util.Alert.Alerts;
 
 import java.io.IOException;
@@ -34,6 +35,13 @@ public class MainController implements Initializable {
     protected void onMenuItemDepartmentAction(){
         loadView("/p_henriqued/javafxstudy/gui/DepartmentView.fxml", (DepartmentController controller) -> {
             controller.setService(new DepartmentService());
+            controller.updateTableView();
+        });
+    }
+    @FXML
+    protected void onMenuItemSellerAction(){
+        loadView("/p_henriqued/javafxstudy/gui/SellersView.fxml", (SellerController controller) -> {
+            controller.setService(new SellerService());
             controller.updateTableView();
         });
     }
