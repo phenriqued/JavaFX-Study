@@ -19,7 +19,9 @@ import p_henriqued.javafxstudy.models.Sellers.Seller;
 import p_henriqued.javafxstudy.util.Alert.Alerts;
 import p_henriqued.javafxstudy.util.Utils;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,6 +35,12 @@ public class SellerController implements Initializable, DataChangeListener {
     private TableColumn<Seller, Long> tableColumnIdSeller;
     @FXML
     private TableColumn<Seller, String> tableColumnNameSeller;
+    @FXML
+    private TableColumn<Seller, String> tableColumnEmailSeller;
+    @FXML
+    private TableColumn<Seller, LocalDate> tableColumnBirthDateSeller;
+    @FXML
+    private TableColumn<Seller, BigDecimal> tableColumnBaseSalarySeller;
     @FXML
     private TableColumn<Seller, Seller> tableColumnEDIT;
     @FXML
@@ -56,6 +64,9 @@ public class SellerController implements Initializable, DataChangeListener {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableColumnIdSeller.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnNameSeller.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnEmailSeller.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tableColumnBirthDateSeller.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+        tableColumnBaseSalarySeller.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
 
         Scene mainScene = MainApplication.getMainScene();
         tableViewSeller.prefHeightProperty().bind(mainScene.heightProperty());
