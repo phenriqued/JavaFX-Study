@@ -9,6 +9,7 @@ Este repositório tem como objetivo documentar meu aprendizado e exploração do
 
 * `main`: Contém a estrutura básica do projeto e informações gerais.
 * `controls`: Demonstrações de diversos controles de UI do JavaFX.
+* `project`: Este branch apresenta um projeto completo de registro de departamentos e vendedores. A interface gráfica foi desenvolvida com JavaFX, enquanto o armazenamento dos dados é realizado utilizando o MySQL. Para cada entidade (departamento e vendedor), implementei as operações básicas de um CRUD (Create, Read, Update, Delete).
 
 ## Como usar
 
