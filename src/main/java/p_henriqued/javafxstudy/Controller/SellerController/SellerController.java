@@ -6,19 +6,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.Setter;
 import p_henriqued.javafxstudy.MainApplication;
+import p_henriqued.javafxstudy.Servicies.DepartmentService.DepartmentService;
 import p_henriqued.javafxstudy.Servicies.SellersService.SellerService;
+import p_henriqued.javafxstudy.infra.Exceptions.ValidationException;
 import p_henriqued.javafxstudy.listeners.DataChangeListener;
 import p_henriqued.javafxstudy.models.Sellers.Seller;
 import p_henriqued.javafxstudy.util.Alert.Alerts;
 import p_henriqued.javafxstudy.util.Utils;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
@@ -56,7 +62,7 @@ public class SellerController implements Initializable, DataChangeListener {
     public void onButtonNewClick(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
         Seller seller = new Seller();
-        createDialogForm(seller, "/p_henriqued/javafxstudy/gui/DepartmentFormView.fxml", parentStage);
+        createDialogForm(seller, "/p_henriqued/javafxstudy/gui/SellersFormView.fxml", parentStage);
     }
 
 
@@ -83,27 +89,30 @@ public class SellerController implements Initializable, DataChangeListener {
     }
 
     private void createDialogForm(Seller seller, String absoluteName, Stage parentStage){
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-//            Pane pane = loader.load();
-//
-//            DepartmentFormsController formsController = loader.getController();
-//            formsController.setDepartmentEntity(dep);
-//            formsController.setService(new DepartmentService());
-//            formsController.subscribeDataChangeListener(this);
-//            formsController.updateFormData();
-//            if(formsController.getIdDepartmentLabel().getText().equalsIgnoreCase("null")) formsController.getIdDepartmentLabel().setText("");
-//
-//            Stage dialogStage = new Stage();
-//            dialogStage.setTitle("Enter department data");
-//            dialogStage.setScene(new Scene(pane));
-//            dialogStage.setResizable(false);
-//            dialogStage.initOwner(parentStage);
-//            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.showAndWait();
-//        } catch (ValidationException | IOException e) {
-//            Alerts.AlertShow("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
-//        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+            Pane pane = loader.load();
+
+            SellerFormsController formsController = loader.getController();
+            formsController.setSellerEntity(seller);
+            formsController.setService(new SellerService());
+            formsController.setDepartmentService(new DepartmentService());
+            formsController.loadAssociatedObjects();
+            formsController.subscribeDataChangeListener(this);
+            formsController.updateFormData();
+            if(formsController.getIdSellerLabel().getText().equalsIgnoreCase("null")) formsController.getIdSellerLabel().setText("");
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Enter department data");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parentStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alerts.AlertShow("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     private void initEditButtons() {
@@ -120,7 +129,7 @@ public class SellerController implements Initializable, DataChangeListener {
                 setGraphic(button);
                 button.setOnAction(
                         event -> createDialogForm(
-                                obj, "/p_henriqued/javafxstudy/gui/DepartmentFormView.fxml",Utils.currentStage(event)));
+                                obj, "/p_henriqued/javafxstudy/gui/SellersFormView.fxml",Utils.currentStage(event)));
             }
         });
     }

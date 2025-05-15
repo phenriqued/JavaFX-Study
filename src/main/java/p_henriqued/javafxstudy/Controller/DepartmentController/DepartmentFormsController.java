@@ -25,7 +25,7 @@ public class DepartmentFormsController implements Initializable {
     private Department departmentEntity;
     @Setter
     private DepartmentService service;
-    List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+    private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
     @Getter
     @FXML
     private Label idDepartmentLabel;
